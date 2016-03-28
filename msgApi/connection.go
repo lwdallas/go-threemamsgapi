@@ -161,7 +161,7 @@ options ["CURLOPT_PROGRESSFUNCTION"] = progress
 
 //tls settings
 
-if (true == = self.setting.GetTlsOption(ConnectionSettings.TlsOptionForceHttps, false)) {
+	if (true == self.setting.GetTlsOption(ConnectionSettings.TlsOptionForceHttps, false)) {
 //limit allowed protocols to HTTPS
 options["CURLOPT_PROTOCOLS"] = "CURLPROTO_HTTPS"
 }
@@ -188,7 +188,7 @@ break
 }
 }
 if (tlsCipher = self.setting.GetTlsOption(ConnectionSettings.TlsOptionCipher, nil)) {
-if (true == = is_string(tlsCipher)) {
+	if (true == is_string(tlsCipher)) {
 options["CURLOPT_SSL_CIPHER_LIST"] = tlsCipher
 }
 }
