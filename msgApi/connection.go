@@ -155,9 +155,9 @@ func (self *Connection) CreateDefaultOptions(progress interface{}) {
 }
 
 //no progress
-if (nil != = progress) {
-options = ["CURLOPT_NOPROGRESS"] = false
-options = ["CURLOPT_PROGRESSFUNCTION"] = progress
+if (nil != progress) {
+options ["CURLOPT_NOPROGRESS"] = false
+options ["CURLOPT_PROGRESSFUNCTION"] = progress
 }
 
 //tls settings
