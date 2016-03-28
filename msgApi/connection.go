@@ -37,7 +37,7 @@ type Connection struct {
 
 }
 
-(self *Connection) func Init(setting ConnectionSettings, publicKeyStore PublicKeyStore) {
+func (self *Connection) Init(setting ConnectionSettings, publicKeyStore PublicKeyStore) {
 	self.setting = setting
 	self.publicKeyStore = publicKeyStore
 }
@@ -47,7 +47,7 @@ type Connection struct {
  * @param $text
  * @return SendSimpleResult
  */
-(self *Connection) func SendSimple(receiver Receiver, text string) SendSimpleResult {
+func (self *Connection) SendSimple(receiver Receiver, text string) SendSimpleResult {
 	command := PerformSendSimple(receiver, text)
 	return self.Post(command)
 }
@@ -58,7 +58,7 @@ type Connection struct {
  * @param string $box
  * @return SendE2EResult
  */
-(self *Connection) func SendE2E(threemaId, nonce, box string) SendE2EResult {
+func (self *Connection) SendE2E(threemaId, nonce, box string) SendE2EResult {
 	command := PerformSendE2E(threemaId, nonce, box)
 	return self.Post(command)
 }
@@ -67,7 +67,7 @@ type Connection struct {
  * @param $encryptedFileData (binary string)
  * @return UploadFileResult
  */
-(self *Connection) func UploadFile(encryptedFileData []byte) UploadFileResult {
+func (self *Connection) UploadFile(encryptedFileData []byte) UploadFileResult {
 	command := PerformUploadFile(encryptedFileData)
 	return self.PostMultiPart(command)
 }
@@ -78,7 +78,7 @@ type Connection struct {
  * @param callable $progress
  * @return DownloadFileResult
  */
-(self *Connection) func DownloadFile(blobId string, progress interface{}) DownloadFileResult { // TODO: this is a coding error, make a progress interface
+func (self *Connection) DownloadFile(blobId string, progress interface{}) DownloadFileResult { // TODO: this is a coding error, make a progress interface
 	command := PerformDownloadFile(blobId)
 	return self.Get(command, progress)
 }
@@ -87,7 +87,7 @@ type Connection struct {
  * @param $phoneNumber
  * @return LookupIdResult
  */
-(self *Connection) func KeyLookupByPhoneNumber(phoneNumber string) LookupIdResult {
+func (self *Connection) KeyLookupByPhoneNumber(phoneNumber string) LookupIdResult {
 	command := PerformLookupPhone(phoneNumber)
 	return self.Get(command)
 }
@@ -96,7 +96,7 @@ type Connection struct {
  * @param string $email
  * @return LookupIdResult
  */
-(self *Connection) func KeyLookupByEmail(email string) LookupIdResult {
+func (self *Connection) KeyLookupByEmail(email string) LookupIdResult {
 	command := PerformLookupEmail(email)
 	return self.Get(command)
 }
@@ -105,7 +105,7 @@ type Connection struct {
  * @param string $threemaId valid threema id (8 Chars)
  * @return CapabilityResult
  */
-(self *Connection) func KeyCapability(threemaId string) CapabilityResult {
+func (self *Connection) KeyCapability(threemaId string) CapabilityResult {
 	return self.Get(PerformCapability(threemaId))
 }
 
@@ -113,7 +113,7 @@ type Connection struct {
 /**
  * @return CreditsResult
  */
-(self *Connection) func Credits() CreditsResult {
+func (self *Connection) Credits() CreditsResult {
 	return self.Get(PerformCredits())
 }
 
@@ -121,7 +121,7 @@ type Connection struct {
  * @param $threemaId
  * @return FetchPublicKeyResult
  */
-(self *Connection) func FetchPublicKey(threemaId) FetchPublicKeyResult {
+func (self *Connection) FetchPublicKey(threemaId) FetchPublicKeyResult {
 	publicKey := nil
 
 	if (nil != = self.PublicKeyStore) {
@@ -149,7 +149,7 @@ type Connection struct {
  * @param callable $progress
  * @return array
  */
-(self *Connection) func CreateDefaultOptions(progress interface{}) {
+func (self *Connection) CreateDefaultOptions(progress interface{}) {
 	options := make(map[string]string)
 	options["CURLOPT_RETURNTRANSFER"] = true
 }
@@ -200,7 +200,7 @@ return options
  * @param array $params
  * @return array
  */
-(self *Connection) func processRequestParams(params array) {
+func (self *Connection) processRequestParams(params array) {
 	if (nil == params) {
 		params = array() //TODO
 	}
@@ -216,7 +216,7 @@ return options
  * @param callable $progress
  * @return Result
  */
-(self *Connection) func Get(command CommandInterface, progress intefrace {}) Result {
+func (self *Connection) Get(command CommandInterface, progress intefrace {}) Result {
 params := self.ProcessRequestParams(command.GetParams())
 return self.Call(command.GetPath(),
 self.CreateDefaultOptions(progress),
@@ -231,7 +231,7 @@ return command.ParseResult(httpCode, response)
  * @param CommandInterface $command
  * @return Result
  */
-(self *Connection) func Post(command CommandInterface) Result {
+func (self *Connection) Post(command CommandInterface) Result {
 	options := self.CreateDefaultOptions()
 	params := self.processRequestParams(command.GetParams())
 
@@ -250,7 +250,7 @@ return command.ParseResult(httpCode, response)
  * @param MultiPartCommandInterface $command
  * @return Result
  */
-(self *Connection) funct PostMultiPart( command MultiPartCommandInterface ) {
+func (self *Connection)t PostMultiPart( command MultiPartCommandInterface ) {
 options := self.createDefaultOptions()
 params := self.processRequestParams(command.GetParams())
 
@@ -275,7 +275,7 @@ return command.ParseResult(httpCode, response)
  * @return mixed
  * @throws \Threema\Core\Exception
  */
-(self *Connection) func Call(path, curlOptions array, parameters array, result interface{}) {
+func (self *Connection) Call(path, curlOptions array, parameters array, result interface{}) {
 	fullPath := Url("", self.setting.GetHost())
 	fullPath.AddPath(path)
 
