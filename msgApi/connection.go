@@ -124,19 +124,19 @@ func (self *Connection) Credits() CreditsResult {
 func (self *Connection) FetchPublicKey(threemaId) FetchPublicKeyResult {
 	publicKey := nil
 
-	if (nil != = self.PublicKeyStore) {
+	if (nil != self.PublicKeyStore) {
 	publicKey = self.PublicKeyStore.getPublicKey(threemaId)
 	}
 
-	if (nil == = publicKey) {
+	if (nil == publicKey) {
 	command := FetchPublicKey(threemaId)
 	result := self.Get(command)
-	if (false === result.isSuccess()) {
+		if (false == result.isSuccess()) {
 	return result
 	}
 	publicKey = result.getRawResponse()
 
-	if (nil != = self.publicKeyStore) {
+		if (nil != self.publicKeyStore) {
 	self.publicKeyStore.setPublicKey(threemaId, publicKey)
 	}
 	}
