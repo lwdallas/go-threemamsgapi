@@ -28,17 +28,17 @@ package gothreemamsgapi
  * Class Connection
  */
 type Connection struct {
-var Setting string
+	Setting        string
 
 /**
  * @var PublicKeyStore
  */
-var PublicKeyStore string
+	PublicKeyStore string
 
 }
 
 (self *Connection) func Init(setting ConnectionSettings, publicKeyStore PublicKeyStore) {
-	self.setting = $setting
+	self.setting = setting
 	self.publicKeyStore = publicKeyStore
 }
 
