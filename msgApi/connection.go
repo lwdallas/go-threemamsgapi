@@ -152,7 +152,6 @@ func (self *Connection) FetchPublicKey(threemaId) FetchPublicKeyResult {
 func (self *Connection) CreateDefaultOptions(progress interface{}) {
 	options := make(map[string]string)
 	options["CURLOPT_RETURNTRANSFER"] = true
-}
 
 //no progress
 if (nil != progress) {
