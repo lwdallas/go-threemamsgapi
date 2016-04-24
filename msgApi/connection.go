@@ -37,9 +37,10 @@ type Connection struct {
 
 }
 
-func (self *Connection) Init(setting ConnectionSettings, publicKeyStore PublicKeyStore) {
-	self.setting = setting
-	self.publicKeyStore = publicKeyStore
+func NewConnection(setting ConnectionSettings, publicKeyStore string) *Connection {
+	setting = setting
+	publicKeyStore = publicKeyStore
+	return &Connection{setting, publicKeyStore }
 }
 
 /**

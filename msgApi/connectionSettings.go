@@ -1,8 +1,8 @@
 package gothreemamsgapi
 
-const TlsOptionForceHttps = "forceHttps"
-const TlsOptionVersion = "tlsVersion"
-const TlsOptionCipher = "tlsCipher"
+const TlsOptionForceHttps = "TlsOptionForceHttps"
+const TlsOptionVersion = "TlsOptionVersion"
+const TlsOptionCipher = "TlsOptionCipher"
 
 type ConnectionSettings struct {
 	threemaId string
@@ -20,20 +20,18 @@ type ConnectionSettings struct {
  * @param string|null $host server url
  * @param array|null $tlsOptions advanced TLS options
  */
-func (self *ConnectionSettings) NewConnectionSettings(threemaId string, secret string, host string, tlsOptions map[string]int) {
-	self.threemaId = threemaId
-	self.secret = secret
+func NewConnectionSettings(threemaId string, secret string, host string, tlsOptions map[string]int) *ConnectionSettings {
 	if "" == host {
 		host = "https://msgapi.threema.ch"
 	}
-	self.host = host
 
 	// TLS options
 	if len(tlsOptions) > 0 {
-		self.tlsOptions[TlsOptionForceHttps], _ = tlsOptions[TlsOptionForceHttps]
-		self.tlsOptions[TlsOptionVersion], _ = tlsOptions[TlsOptionVersion]
-		self.tlsOptions[TlsOptionCipher], _ = tlsOptions[TlsOptionCipher]
+		tlsOptions[TlsOptionForceHttps], _ = tlsOptions[TlsOptionForceHttps]
+		tlsOptions[TlsOptionVersion], _ = tlsOptions[TlsOptionVersion]
+		tlsOptions[TlsOptionCipher], _ = tlsOptions[TlsOptionCipher]
 	}
+	return &ConnectionSettings{threemaId: threemaId, secret: secret, host: host, tlsOptions: tlsOptions}
 }
 
 func (self *ConnectionSettings) GetThreemaId() string {
@@ -48,11 +46,11 @@ func (self *ConnectionSettings) GetHost() string {
 	return self.host
 }
 
-func (self *ConnectionSettings) GetTlsOptions() string {
+func (self *ConnectionSettings) GetTlsOptions() map[string]int {
 	return self.tlsOptions
 }
 
-func (self *ConnectionSettings) GetTlsOption(option, defaultValue string) string {
+func (self *ConnectionSettings) GetTlsOption(option string, defaultValue int) int {
 	if _, ok := self.tlsOptions[option]; ok {
 		return self.tlsOptions[option]
 	} else {
