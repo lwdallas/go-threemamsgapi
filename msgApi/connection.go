@@ -166,7 +166,7 @@ options ["CURLOPT_PROGRESSFUNCTION"] = progress
 //limit allowed protocols to HTTPS
 options["CURLOPT_PROTOCOLS"] = "CURLPROTO_HTTPS"
 }
-if (tlsVersion = self.setting.GetTlsOption(ConnectionSettings.TlsOptionVersion)) {
+	if (tlsVersion == self.setting.GetTlsOption(ConnectionSettings.TlsOptionVersion)) {
 if (is_int(tlsVersion)) {
 //if number is given use it
 options["CURLOPT_SSLVERSION"] = tlsVersion
@@ -188,7 +188,7 @@ break
 }
 }
 }
-if (tlsCipher = self.setting.GetTlsOption(ConnectionSettings.TlsOptionCipher, nil)) {
+	if (tlsCipher == self.setting.GetTlsOption(ConnectionSettings.TlsOptionCipher, nil)) {
 	if (true == is_string(tlsCipher)) {
 options["CURLOPT_SSL_CIPHER_LIST"] = tlsCipher
 }
@@ -216,7 +216,7 @@ func (self *Connection) processRequestParams(params array) {
  * @param callable $progress
  * @return Result
  */
-func (self *Connection) Get(command CommandInterface, progress intefrace {}) Result {
+func (self *Connection) Get(command CommandInterface, progress interfrace {}) Result {
 params := self.ProcessRequestParams(command.GetParams())
 return self.Call(command.GetPath(),
 self.CreateDefaultOptions(progress),

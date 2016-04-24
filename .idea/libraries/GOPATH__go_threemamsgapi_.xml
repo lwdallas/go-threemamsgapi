@@ -19,6 +19,7 @@
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/net/html/charset/testdata" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/refactor/eg/testdata" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/crypto/sha3/testdata" />
+      <root url="file://$PROJECT_DIR$/../src/github.com/gorilla/context/.git" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/.git" />
       <root url="file://$PROJECT_DIR$/../src/github.com/DATA-DOG/go-sqlmock/.git" />
       <root url="file://$PROJECT_DIR$/../src/github.com/tux21b/gocqldriver/.git" />
@@ -26,6 +27,7 @@
       <root url="file://$PROJECT_DIR$/../src/github.com/mattn/go-sqlite3/.git" />
       <root url="file://$PROJECT_DIR$/../src/github.com/spf13/pflag/.git" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/cmd/bundle/testdata" />
+      <root url="file://$PROJECT_DIR$/../src/github.com/gorilla/mux/.git" />
       <root url="file://$PROJECT_DIR$" />
       <root url="file://$PROJECT_DIR$/../src/github.com/magiconair/properties/_third_party" />
       <root url="file://$PROJECT_DIR$/../src/github.com/magiconair/properties/.git" />
@@ -73,9 +75,11 @@
       <root url="file://$PROJECT_DIR$/../src/github.com/hailocab/go-hostpool/.git" />
       <root url="file://$PROJECT_DIR$/../src/github.com/mitchellh/mapstructure/.git" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/cmd/callgraph/testdata" />
+      <root url="file://$PROJECT_DIR$/../src/github.com/stretchr/testify/_codegen" />
       <root url="file://$PROJECT_DIR$/../src/gopkg.in/fsnotify.v1/.git" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/cmd/stringer/testdata" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/tools/go/ssa/testdata" />
+      <root url="file://$PROJECT_DIR$/../src/github.com/stretchr/testify/.git" />
       <root url="file://$PROJECT_DIR$/../src/golang.org/x/net/html/testdata" />
     </excluded>
   </library>
