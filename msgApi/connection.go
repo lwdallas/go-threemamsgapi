@@ -154,45 +154,45 @@ func (self *Connection) CreateDefaultOptions(progress interface{}) {
 	options := make(map[string]string)
 	options["CURLOPT_RETURNTRANSFER"] = true
 
-//no progress
-if (nil != progress) {
-options ["CURLOPT_NOPROGRESS"] = false
-options ["CURLOPT_PROGRESSFUNCTION"] = progress
-}
+	//no progress
+	if (nil != progress) {
+		options ["CURLOPT_NOPROGRESS"] = false
+		options ["CURLOPT_PROGRESSFUNCTION"] = progress
+	}
 
-//tls settings
+	//tls settings
 
 	if (true == self.setting.GetTlsOption(ConnectionSettings.TlsOptionForceHttps, false)) {
-//limit allowed protocols to HTTPS
-options["CURLOPT_PROTOCOLS"] = "CURLPROTO_HTTPS"
-}
+		//limit allowed protocols to HTTPS
+		options["CURLOPT_PROTOCOLS"] = "CURLPROTO_HTTPS"
+	}
 	if (tlsVersion == self.setting.GetTlsOption(ConnectionSettings.TlsOptionVersion)) {
-if (is_int(tlsVersion)) {
-//if number is given use it
-options["CURLOPT_SSLVERSION"] = tlsVersion
-} else {
-//interpret strings as TLS versions
-switch (tlsVersion) {
-case "1.0":
-options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_0"
-break
-case "1.1":
-options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_1"
-break
-case "1.2":
-options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_2"
-break
-default:
-options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_DEFAULT"
-break
-}
-}
-}
+		if (is_int(tlsVersion)) {
+			//if number is given use it
+			options["CURLOPT_SSLVERSION"] = tlsVersion
+		} else {
+			//interpret strings as TLS versions
+			switch (tlsVersion) {
+			case "1.0":
+				options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_0"
+				break
+			case "1.1":
+				options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_1"
+				break
+			case "1.2":
+				options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_TLSv1_2"
+				break
+			default:
+				options["CURLOPT_SSLVERSION"] = "CURL_SSLVERSION_DEFAULT"
+				break
+			}
+		}
+	}
 	if (tlsCipher == self.setting.GetTlsOption(ConnectionSettings.TlsOptionCipher, nil)) {
-	if (true == is_string(tlsCipher)) {
-options["CURLOPT_SSL_CIPHER_LIST"] = tlsCipher
-}
-}
+		if (true == is_string(tlsCipher)) {
+			options["CURLOPT_SSL_CIPHER_LIST"] = tlsCipher
+		}
+	}
 return options
 }
 
